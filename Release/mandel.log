@@ -1,0 +1,12 @@
+﻿  mandel.cpp
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(11,29): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(17,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(60,32): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(79,44): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(79,73): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(79,102): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 4 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  mandel.vcxproj -> C:\Users\9EED\Documents\code\mandel\Release\mandel.exe

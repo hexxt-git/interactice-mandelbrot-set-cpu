@@ -4,17 +4,25 @@
 #include <string>
 using namespace std;
 
+double* complexMulitplication(double real1, double img1, double real2, double img2) {
+    double newReal = (real1 * real2 - img1 * img2);
+    double newImg = (real1 * img2 + real2 * img1);
+
+    double arr[2] = { newReal, newImg };
+    return arr;
+}
+
 int main(void) {
-    const int width = 400;
-    const int height = 300;
-    const float maxN = 100; // max itterations ditermines the quality of the image when you zoom far in
-    const float scroll = 0.3;
+    const int width = 180;
+    const int height = 180;
+    const double maxN = 2000; // max itterations ditermines the quality of the image when you zoom far in
+    const double scroll = 0.3;
 
     InitWindow(width, height, "mandel");
 
-    float cameraX = 0;
-    float cameraY = 0;
-    float cameraZ = 0.02;
+    double cameraX = 0;
+    double cameraY = 0;
+    double cameraZ = 0.02;
     int shift = 0;
 
     while (!WindowShouldClose()) {
@@ -29,7 +37,7 @@ int main(void) {
             cameraZ *= 1 - scroll;
         }
         if (GetMouseWheelMove() == -1) {
-            cameraZ *= 1 + scroll;
+            cameraZ *= 1 + scroll * 2;
         }
 
         //cameraZ *= .9;
@@ -40,43 +48,44 @@ int main(void) {
             for (int y = 0; y < height; y++) {
                 //float initial_real = (float) x / width * 2 - 1;
                 //float initial_imaginary = (float) y / height * 2 - 1;
-                float initial_real = (float)(x - width / 2.0) * cameraZ + cameraX;
-                float initial_imaginary = (float)(y - height / 2.0) * cameraZ + cameraY;
+                double initial_real = (float)(x - width / 2.0) * cameraZ + cameraX;
+                double initial_imaginary = (float)(y - height / 2.0) * cameraZ + cameraY;
 
-                float current_real = initial_real;
-                float current_imaginary = initial_imaginary;
+                double current_real = initial_real;
+                double current_imaginary = initial_imaginary;
 
                 int n = 0;
                 int final = 0;
                 while (n < maxN) {
                     n++;
 
-                    float next_real = powf(current_real, 2) - powf(current_imaginary, 2);
-                    float next_imaginary = 2 * current_real * current_imaginary;
+                    double* next = complexMulitplication(current_real, current_imaginary, current_real, current_imaginary);
+                    double next_real = next[0];
+                    double next_imaginary = next[1];
 
                     current_real = next_real + initial_real;
                     current_imaginary = next_imaginary + initial_imaginary;
 
                     final = abs(current_real + current_imaginary);
 
-                    if (final > 100) {
+                    if (final > 10) {
                         break;
                     }
+
                 }
 
+                //double h = (n / maxN) * .9;
+                //double s = .6;
+                //double v = (n / maxN) * .5;
 
-                /*
-                float h = fmod(powf((n / maxN) * 360, 1.5f), 360);
-                float s = 80;
-                float v = (n / maxN) * 100;
+                //Color c = ColorFromHSV(h, s, v);
+                
+                //Color c = { (int)(n / maxN * 200 * 20), (int)(n / maxN * 30 * 20), (int)(n / maxN * 80 * 20), 255};
 
-                Color c = ColorFromHSV(h, s, v);
-                DrawPixel(x, y, c);
-                */
-                //cout << (int)(n/maxN*200) << endl;
-                //Color c = { (int)(n / maxN * 200 * 30), (int)(n / maxN * 30 * 30), (int)(n / maxN * 80 * 30), 255};
+                //Color c = { (int)(n / maxN * 220), (int)(n / maxN * 180), (int)(n / maxN * 100), 255 };
 
-                Color c = { (int)(n / maxN * 190), (int)(n / maxN * 70) % 190, (int)(n / maxN * 100) % 190, 255 };
+                double l = powf(n / maxN, .5);
+                Color c = { (int)(l*255), (int)(l*255), (int)(l*255), 255 };
 
                 DrawPixel(x, y, c);
                 if (n == maxN) {
@@ -84,13 +93,11 @@ int main(void) {
                 }
             }
         }
-        /*
             DrawPixel(int(width / 2), int(height / 2), WHITE);
             DrawPixel(int(width / 2) + 2, int(height / 2), WHITE);
             DrawPixel(int(width / 2) - 2, int(height / 2), WHITE);
             DrawPixel(int(width / 2), int(height / 2)+1, WHITE);
             DrawPixel(int(width / 2), int(height / 2)-1, WHITE);
-        */
 
         EndDrawing();
     }

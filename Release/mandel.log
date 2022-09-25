@@ -1,11 +1,12 @@
 ﻿  mandel.cpp
-C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(69,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(87,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(88,36): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
-C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(88,50): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
-C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(88,64): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(69,32): warning C4244: '=': conversion from 'long double' to 'long', possible loss of data
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(87,45): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(87,38): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(88,41): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(88,59): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+C:\Users\9EED\Documents\code\mandel\mandel\mandel.cpp(88,77): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
   Generating code
-  1 of 4 functions (25.0%) were compiled, the rest were copied from previous compilation.
+  0 of 5 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

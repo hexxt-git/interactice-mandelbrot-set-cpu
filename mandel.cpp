@@ -4,25 +4,25 @@
 #include <string>
 using namespace std;
 
-double* complexMulitplication(double real1, double img1, double real2, double img2) {
-    double newReal = (real1 * real2 - img1 * img2);
-    double newImg = (real1 * img2 + real2 * img1);
+long double* complexMulitplication(double real1, double img1, double real2, double img2) {
+    long double  newReal = (real1 * real2 - img1 * img2);
+    long double  newImg = (real1 * img2 + real2 * img1);
 
-    double arr[2] = { newReal, newImg };
+    long double  arr[2] = { newReal, newImg };
     return arr;
 }
 
 int main(void) {
-    const int width = 180;
-    const int height = 180;
-    const double maxN = 2000; // max itterations ditermines the quality of the image when you zoom far in
+    const int width = 250;
+    const int height = 250;
+    const double maxN = 5000; // max itterations ditermines the quality of the image when you zoom far in
     const double scroll = 0.3;
 
     InitWindow(width, height, "mandel");
 
-    double cameraX = 0;
-    double cameraY = 0;
-    double cameraZ = 0.02;
+    long double cameraX = 0;
+    long double cameraY = 0;
+    long double cameraZ = 0.02;
     int shift = 0;
 
     while (!WindowShouldClose()) {
@@ -48,23 +48,23 @@ int main(void) {
             for (int y = 0; y < height; y++) {
                 //float initial_real = (float) x / width * 2 - 1;
                 //float initial_imaginary = (float) y / height * 2 - 1;
-                double initial_real = (float)(x - width / 2.0) * cameraZ + cameraX;
-                double initial_imaginary = (float)(y - height / 2.0) * cameraZ + cameraY;
+                long double initial_real = (long double)(x - width / 2.0) * cameraZ + cameraX;
+                long double initial_imaginary = (long double)(y - height / 2.0) * cameraZ + cameraY;
 
-                double current_real = initial_real;
-                double current_imaginary = initial_imaginary;
+                long double current_real = initial_real;
+                long double current_imaginary = initial_imaginary;
 
-                int n = 0;
-                int final = 0;
+                long int n = 0;
+                long int final = 0;
                 while (n < maxN) {
                     n++;
 
-                    double* next = complexMulitplication(current_real, current_imaginary, current_real, current_imaginary);
-                    double next_real = next[0];
-                    double next_imaginary = next[1];
+                    long double* next = complexMulitplication(current_real, current_imaginary, current_real, current_imaginary);
+                    long double  next_real = next[0] + initial_real;
+                    long double  next_imaginary = next[1] + initial_imaginary;
 
-                    current_real = next_real + initial_real;
-                    current_imaginary = next_imaginary + initial_imaginary;
+                    current_real = next_real;
+                    current_imaginary = next_imaginary;
 
                     final = abs(current_real + current_imaginary);
 
@@ -84,8 +84,10 @@ int main(void) {
 
                 //Color c = { (int)(n / maxN * 220), (int)(n / maxN * 180), (int)(n / maxN * 100), 255 };
 
-                double l = powf(n / maxN, .5);
-                Color c = { (int)(l*255), (int)(l*255), (int)(l*255), 255 };
+                long double l = powf(n , 0.7);
+                Color c = { (int)(l*3.5)%200, (int)(l*2.4)%200, (int)(l*1.5)%200, 255 };
+
+
 
                 DrawPixel(x, y, c);
                 if (n == maxN) {
@@ -98,6 +100,7 @@ int main(void) {
             DrawPixel(int(width / 2) - 2, int(height / 2), WHITE);
             DrawPixel(int(width / 2), int(height / 2)+1, WHITE);
             DrawPixel(int(width / 2), int(height / 2)-1, WHITE);
+
 
         EndDrawing();
     }
